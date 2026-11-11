@@ -1,0 +1,3 @@
+cenario,padrao,memoria_bytes,cache_bytes,bloco_bytes,associatividade,linhas,conjuntos,politica,acessos,semente,hits,misses,hit_rate_percent,miss_rate_percent,prob_temporal,prob_espacial,prob_quente,janela_acessos,regiao_bytes
+A,aleatorio,1048576,4096,32,4,128,32,LRU,10000,42,43,9957,0.430000,99.570000,0.0,0.0,0.0,100,4096
+B,realista_sintetico,1048576,4096,32,4,128,32,LRU,10000,42,5875,4125,58.750000,41.250000,0.2,0.2,0.4,100,4096
