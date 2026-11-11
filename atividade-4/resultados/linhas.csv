@@ -1,0 +1,5 @@
+experimento,ram_bytes,cache_bytes,numero_linhas,bloco_bytes,associatividade,numero_conjuntos,politica,acessos,hits,misses,hit_rate_percent,miss_rate_percent,semente
+A1,1048576,256,16,16,2,8,LRU,10000,4457,5543,44.570000,55.430000,2026
+A2,1048576,512,32,16,2,16,LRU,10000,4562,5438,45.620000,54.380000,2026
+A3,1048576,1024,64,16,2,32,LRU,10000,4617,5383,46.170000,53.830000,2026
+A4,1048576,2048,128,16,2,64,LRU,10000,4650,5350,46.500000,53.500000,2026
