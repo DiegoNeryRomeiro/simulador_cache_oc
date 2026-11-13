@@ -1,147 +1,78 @@
-# simulador_cache
-Simulador de Memória Cache com Interface Gráfica (GUI)
-Claro! Aqui está a versão revisada e formatada para o arquivo `README.md` de um repositório no GitHub. A linguagem foi ajustada para o estilo típico de documentação pública, mantendo clareza, objetividade e boa organização:
+# Atividade 2 — Impacto da localidade temporal, espacial e regiões quentes
 
----
+Esta atividade varia as probabilidades de `gerar_padrao_realista`, mede a taxa de acerto e correlaciona os resultados com mapas temporais dos acessos. A organização segue o padrão da atividade 6 do grupo. **Nenhum arquivo original da raiz do repositório foi alterado.**
 
-# Simulador de Memória Cache com Interface Gráfica (GUI)
+## Configuração executada
 
-## 1. Apresentação
+- RAM: 1 MiB; cache: 8 KiB; bloco: 16 bytes; associatividade: 16 vias; política: LRU.
+- 10.000 acessos por ensaio; 21 cenários; 30 repetições por cenário.
+- Sementes inteiras: 20261111 a 20261140. São identificadores, não datas.
+- Localidade isolada em 0%, 20%, 40%, 60%, 80% e 100%; cinco cenários mistos.
+- Cache inicialmente vazia em cada ensaio; parcela aleatória igual a um menos a soma das probabilidades.
+- Mapas: janelas de 50 acessos, IDs reais dos blocos, até 63 mais ativos e contagem explícita dos demais.
 
-Este simulador tem como objetivo didático auxiliar no estudo do comportamento de memórias cache em sistemas computacionais. Por meio de uma interface gráfica interativa (baseada em **Dear PyGui**), o usuário pode configurar diversos parâmetros da arquitetura de cache e do padrão de acesso à memória, observando o impacto nas taxas de acerto (*hit rate*) sob diferentes políticas de substituição.
+Coleta original em 11/11/2026; reprodução da entrega reorganizada em 13/11/2026. Os resultados numéricos foram preservados: **630 execuções e 6.300.000 acessos**. O [relatório](relatorio/atividade_2_impacto_localidade.md) explica metodologia, resultados e limitações.
 
-## 2. Funcionalidades Principais
+## Instalação e execução
 
-* Simulação de acessos à memória com padrões realistas baseados em:
+A partir da raiz do repositório, usando Python 3.12 (versão testada):
 
-  * Localidade temporal
-  * Localidade espacial
-  * Regiões quentes de memória
-* Implementação das principais políticas de substituição:
-
-  * **FIFO** (First-In First-Out)
-  * **LRU** (Least Recently Used)
-  * **LFU** (Least Frequently Used)
-  * **Random**
-* Geração de **mapa de calor (heatmap)** para visualização da frequência de acesso por bloco de memória ao longo do tempo **(desabilitado por erro no código)**.
-* Execução de **simulações Monte Carlo** para análise estatística da taxa de acerto.
-* Exibição dos resultados diretamente na interface, incluindo média e desvio padrão da taxa de acerto.
-
-## 3. Parâmetros Ajustáveis pelo Usuário
-
-O simulador permite a configuração dos seguintes parâmetros:
-
-* Tamanho da memória principal (número de endereços)
-* Quantidade de acessos simulados
-* Número total de linhas da cache
-* Grau de associatividade (linhas por conjunto)
-* Tamanho do bloco (endereços por bloco)
-* Número de regiões quentes (áreas mais frequentemente acessadas)
-* Probabilidades associadas ao padrão de acesso:
-
-  * Localidade temporal (repetição do último acesso)
-  * Localidade espacial (endereços próximos ao anterior)
-  * Regiões quentes (foco em áreas específicas)
-* Política de substituição (FIFO, LRU, LFU, Random)
-* Número de simulações (para Monte Carlo)
-
-## 4. Geração do Padrão de Acesso
-
-Os endereços são gerados com base em um modelo probabilístico que busca simular o comportamento real de programas:
-
-* Uma fração repete o endereço anterior (*localidade temporal*)
-* Outra fração acessa endereços vizinhos (*localidade espacial*)
-* Outra parte concentra acessos em **regiões quentes**
-* O restante realiza acessos aleatórios
-
-## 5. Políticas de Substituição
-
-Cada política é implementada com estruturas de dados apropriadas que refletem seu comportamento esperado:
-
-### 5.1 FIFO
-
-Remove o bloco mais antigo inserido no conjunto.
-
-### 5.2 LRU
-
-Remove o bloco **menos recentemente utilizado**.
-
-### 5.3 LFU
-
-Remove o bloco **menos frequentemente acessado**. A seguir, descreve-se a lógica da função de simulação `simular_cache_LFU`:
-
-```python
-def simular_cache_LFU(padrao_acesso, cache_lines, associatividade, bloco_tamanho):
+```powershell
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r atividade-2/requirements.txt
+.\.venv\Scripts\python.exe -m unittest discover -s atividade-2/testes -v
+.\.venv\Scripts\python.exe atividade-2/scripts/executar_experimentos.py --fase piloto
+.\.venv\Scripts\python.exe atividade-2/scripts/executar_experimentos.py --fase completo
+.\.venv\Scripts\python.exe atividade-2/scripts/verificar_artefatos.py
 ```
 
-* `padrao_acesso`: lista de endereços simulados.
-* `cache_lines`: número total de linhas da cache.
-* `associatividade`: número de linhas por conjunto.
-* `bloco_tamanho`: quantidade de endereços por bloco.
+No Linux/macOS, use `.venv/bin/python`. Não é necessário iniciar a GUI ou instalar seus requisitos. `requirements-lock.txt` registra o ambiente completo utilizado; pode ser usado no lugar de `requirements.txt` para reproduzir as versões exatas. Inclui também pacotes da GUI do ambiente compartilhado da execução, que não são necessários para os scripts.
 
-**Etapas da Simulação**:
+A fase completa exige piloto aprovado com hashes compatíveis dos scripts e executa os testes antes da simulação. O piloto usa três repetições por cenário. Os comandos regeneram os arquivos da respectiva fase; faça cópia prévia se quiser preservar uma execução anterior. O `.gitignore` da atividade exclui os gráficos e traces redundantes do piloto, mas preserva suas tabelas e evidências.
 
-1. Calcula-se o número de conjuntos: `num_conjuntos = cache_lines // associatividade`
-2. Inicializa-se a cache: `cache = [{} for _ in range(num_conjuntos)]`
-3. Estatísticas: `hits`, `misses`, `hit_log`, `conjunto_log`
-4. Para cada endereço:
+Para apenas regenerar as figuras dos CSVs definitivos, sem repetir simulações:
 
-   * Calcula-se `bloco = endereco // bloco_tamanho`
-   * Determina-se o `conjunto = bloco % num_conjuntos`
-   * Verifica-se HIT ou MISS
-   * Atualiza-se o contador ou substitui o bloco menos acessado
+```powershell
+.\.venv\Scripts\python.exe atividade-2/scripts/gerar_graficos.py
+.\.venv\Scripts\python.exe atividade-2/scripts/gerar_mapas_calor.py
+```
 
-**Retorno**:
+## Organização
 
-* Lista de conjuntos acessados
-* Lista binária de HIT/MISS
+| Pasta/arquivo | Conteúdo |
+|---|---|
+| `scripts/cache_core.py` | Cache e gerador independentes da interface, com validações |
+| `scripts/configuracao.py` | Hardware fixo e definição dos 21 cenários |
+| `scripts/executar_experimentos.py` | Piloto, coleta, estatística e validação |
+| `scripts/visualizacoes.py` | Renderização compartilhada e leitura dos traces salvos |
+| `scripts/gerar_graficos.py` | Regeneração dos três gráficos |
+| `scripts/gerar_mapas_calor.py` | Regeneração do painel e dos 21 mapas individuais |
+| `scripts/verificar_artefatos.py` | Auditoria de médias, desvios, hashes e replay |
+| `resultados/completo/` | 630 resultados, resumo, metadados, testes, validação e auditoria |
+| `resultados/completo/traces/` | Primeira repetição de cada cenário, com endereço, bloco e hit/miss |
+| `resultados/piloto/` | Evidências dos 63 ensaios de aprovação |
+| `graficos/` | Curvas de localidade, comparação das misturas e endereços no tempo |
+| `mapas_calor/` | Painel comparativo e um mapa por cenário |
+| `testes/` | 15 testes, incluindo equivalência com o código original |
+| `relatorio/` | Relatório acadêmico em Markdown |
+| `documentacao/` | Registro de execução e guia do commit |
 
-A política **LFU** mantém um contador para cada bloco e sempre remove o de menor valor.
+## Principais resultados
 
-### 5.4 Random
+| Cenário | Média da taxa de acerto |
+|---|---:|
+| Aleatório | 0,755% |
+| Temporal 100% | 99,990% |
+| Espacial 100% | 99,018% |
+| Quente 100% | 99,910% |
+| Configuração original (20/20/40%) | 76,261% |
 
-Seleciona um bloco aleatoriamente para substituição.
+![Curvas de localidade](graficos/curvas_localidade.png)
 
-## 6. Saída e Resultados
+## Mapas e preservação do simulador original
 
-Ao final da simulação, são apresentados:
+O método da GUI gera um trace independente e usa módulo 64 para representar os blocos. A atividade gera seus próprios mapas headless para usar a mesma sequência medida, evitar sobreposição de blocos distantes e preservar a última janela parcial. O método original não foi editado.
 
-* Taxa de acerto: `cache hits / total de acessos`
-* Quando múltiplas simulações são realizadas:
+As cores dos mapas usam escala comum de 1 a 50 acessos por janela, em escala logarítmica. A parcela `Outros` é informada no título e fica fora das cores de um bloco individual. Os IDs selecionados não definem distâncias físicas entre linhas; o gráfico de endereços no tempo preserva a escala física.
 
-  * Média e desvio padrão da taxa de acerto
-  * Média e variância de hits e misses
-
-Todos os resultados são exibidos diretamente na interface gráfica.
-
-## 7. Visualização Gráfica (opcional)
-
-A função `mapa_temporal_blocos` gera um **heatmap** com:
-
-* Blocos de memória no eixo vertical
-* Janelas temporais no eixo horizontal
-
-Essa visualização facilita a identificação de padrões e regiões de maior atividade ao longo do tempo.
-
-## 8. Requisitos
-
-* Python 3.x
-* Bibliotecas necessárias:
-
-  * `numpy`
-  * `matplotlib`
-  * `dearpygui`
-  * `collections`
-  * `random`
-  * `io`, `base64` (opcional)
-
-## 9. Aplicações Didáticas
-
-Este simulador pode ser utilizado em disciplinas como:
-
-* Organização e Arquitetura de Computadores
-* Sistemas Operacionais
-* Sistemas Embarcados
-* Simulação de Sistemas
-
-É uma ferramenta simples que pode ser usada para entender conceitos fundamentais de caches, localidade de acesso e impacto das políticas de substituição no desempenho.
+Para commitar, copie **somente `atividade-2/`** para a raiz do clone do grupo, ao lado de `atividade-6/`. Veja o [guia do commit](documentacao/GUIA_DO_COMMIT.md).

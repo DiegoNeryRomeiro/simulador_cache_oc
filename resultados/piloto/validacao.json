@@ -1,0 +1,9 @@
+{
+  "contadores_consistentes": true,
+  "taxas_validas": true,
+  "temporal_100_um_miss": true,
+  "quente_100_nove_misses": true,
+  "aleatorio_proximo_capacidade_relativa": true,
+  "espacial_100_alta_reutilizacao": true,
+  "curvas_puras_crescentes_em_media": true
+}

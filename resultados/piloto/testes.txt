@@ -1,0 +1,20 @@
+test_cold_hit_and_fields (test_experimentos.CacheTests.test_cold_hit_and_fields) ... ok
+test_fifo_lru_victims (test_experimentos.CacheTests.test_fifo_lru_victims) ... ok
+test_generator_matches_original_for_all_scenarios (test_experimentos.CacheTests.test_generator_matches_original_for_all_scenarios) ... ok
+test_heatmap_no_aliasing_partial_window (test_experimentos.CacheTests.test_heatmap_no_aliasing_partial_window) ... ok
+test_heatmap_other_preserves_total (test_experimentos.CacheTests.test_heatmap_other_preserves_total) ... ok
+test_hot_support_and_cold_misses (test_experimentos.CacheTests.test_hot_support_and_cold_misses) ... ok
+test_invalid_architecture (test_experimentos.CacheTests.test_invalid_architecture) ... ok
+test_invalid_hot_regions (test_experimentos.CacheTests.test_invalid_hot_regions) ... ok
+test_invalid_probabilities (test_experimentos.CacheTests.test_invalid_probabilities) ... ok
+test_lfu_victim (test_experimentos.CacheTests.test_lfu_victim) ... ok
+test_lru_matches_original_for_all_scenarios (test_experimentos.CacheTests.test_lru_matches_original_for_all_scenarios) ... ok
+test_random_accounting (test_experimentos.CacheTests.test_random_accounting) ... ok
+test_reproducibility_and_bounds (test_experimentos.CacheTests.test_reproducibility_and_bounds) ... ok
+test_spatial_steps (test_experimentos.CacheTests.test_spatial_steps) ... ok
+test_temporal_exactly_one_miss (test_experimentos.CacheTests.test_temporal_exactly_one_miss) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.086s
+
+OK

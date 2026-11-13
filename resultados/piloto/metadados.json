@@ -1,0 +1,46 @@
+{
+  "fase": "piloto",
+  "data_local": "2026-11-13T13:46:52.234871-03:00",
+  "simulador_original_sha256": "f5c3e52698a2d576401eab63ad27597c0e448df0c66e20bc9d75b04c7651cabe",
+  "configuracao": {
+    "memory_size": 1048576,
+    "cache_size": 8192,
+    "bloco_tamanho": 16,
+    "associatividade": 16,
+    "algoritmo": "LRU",
+    "acessos": 10000,
+    "janela_heatmap": 50,
+    "max_linhas_heatmap": 64
+  },
+  "regioes_quentes": [
+    64,
+    1024,
+    8192,
+    32768,
+    131072,
+    262144,
+    524288,
+    786432,
+    983040
+  ],
+  "sementes": [
+    20261111,
+    20261112,
+    20261113
+  ],
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "plataforma": "Windows-11-10.0.26200-SP0",
+  "numpy": "2.3.0",
+  "matplotlib": "3.10.3",
+  "numero_cenarios": 21,
+  "numero_execucoes": 63,
+  "acessos_totais": 630000,
+  "segundos_simulacao": 2.357704799998828,
+  "hash_formato": "SHA-256 dos endereços uint32 little endian, na ordem de acesso",
+  "fontes_sha256": {
+    "scripts/cache_core.py": "d005f33371813d11af80a053790c8e3fbc53a997eb89392424c071d3eac01084",
+    "scripts/configuracao.py": "b27bd5455bc3aae49918933991fa6ab3d9d107681b0d475dabd20a336a152522",
+    "scripts/executar_experimentos.py": "9a6b49fb950fe5fbc998677862c9e279d437c47ffb645be2de8d1c5874ba9219",
+    "scripts/visualizacoes.py": "a44b3cc5884700132aa65fa3b03f3b137ebc99a0308126207df3af791534824e"
+  }
+}

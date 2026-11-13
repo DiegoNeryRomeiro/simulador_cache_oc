@@ -1,0 +1,138 @@
+{
+  "status": "PASS",
+  "execucoes": 630,
+  "cenarios": 21,
+  "traces_reexecutados": 21,
+  "acessos_reexecutados": 210000,
+  "piloto_reproduzido": true,
+  "medias_e_desvios_recalculados": true,
+  "hashes_dos_fontes_conferidos": true,
+  "traces": [
+    {
+      "cenario": "aleatorio",
+      "trace_sha256": "05b1fa33ed31d4ec138d89efdba765804c68dc3d3303a8c3e61e0fd6bd673f40",
+      "acessos": 10000,
+      "status": "PASS"
+    },
+    {
+      "cenario": "temporal_020",
+      "trace_sha256": "6265c8cf4c87c24a57075afb4c57d1feac156f812a3137a43fcacd3482a0117b",
+      "acessos": 10000,
+      "status": "PASS"
+    },
+    {
+      "cenario": "temporal_040",
+      "trace_sha256": "8398ee2172aff911088c0277b3df1d15d8c263e5bfbf965232a7c0b6cc79337c",
+      "acessos": 10000,
+      "status": "PASS"
+    },
+    {
+      "cenario": "temporal_060",
+      "trace_sha256": "3aaa07fa845544ce49e18f348426497b46325a6227265b9b15f5ab045fe0f048",
+      "acessos": 10000,
+      "status": "PASS"
+    },
+    {
+      "cenario": "temporal_080",
+      "trace_sha256": "6d131a87564b262e20263658b31d3c8bee26ed6594f3f21ace498fa6b89897dc",
+      "acessos": 10000,
+      "status": "PASS"
+    },
+    {
+      "cenario": "temporal_100",
+      "trace_sha256": "47a347aabefe35d96de79e83655ced23417e6339b3d2d6b5cc19c46162f75e30",
+      "acessos": 10000,
+      "status": "PASS"
+    },
+    {
+      "cenario": "espacial_020",
+      "trace_sha256": "3da6c4d1a209e7dd042721e6a0be952a962a514837faceca5758626e03eb30f3",
+      "acessos": 10000,
+      "status": "PASS"
+    },
+    {
+      "cenario": "espacial_040",
+      "trace_sha256": "10fd75e03d7999075ec6b6cb2076ada122804d25a0091d94d2c5ba9541999335",
+      "acessos": 10000,
+      "status": "PASS"
+    },
+    {
+      "cenario": "espacial_060",
+      "trace_sha256": "fb73ffc110a37f6dae6bd111869403e56d4b32774bbbe0a22aa178b37f9ec373",
+      "acessos": 10000,
+      "status": "PASS"
+    },
+    {
+      "cenario": "espacial_080",
+      "trace_sha256": "43184f57098ad6cc4485238a0f9f95973cc10c61cfb22e686f7d286d83ceebc4",
+      "acessos": 10000,
+      "status": "PASS"
+    },
+    {
+      "cenario": "espacial_100",
+      "trace_sha256": "e7273ecdad5f783c5104799dfd6151ca3c7e20921319184501be0568d146ddda",
+      "acessos": 10000,
+      "status": "PASS"
+    },
+    {
+      "cenario": "quente_020",
+      "trace_sha256": "420d8b0fc11e2dee94897bbcc6793bb871d97196dc1e6c7b09c4d84325955aa2",
+      "acessos": 10000,
+      "status": "PASS"
+    },
+    {
+      "cenario": "quente_040",
+      "trace_sha256": "b7e587284ef68db1e0159f4e8f2ae114cfce106d74cd60875731f3c434badd69",
+      "acessos": 10000,
+      "status": "PASS"
+    },
+    {
+      "cenario": "quente_060",
+      "trace_sha256": "40200c5f543e46bf66a0a17c9eaf9a1bc4c3b6cecf86e49c41bf768fbe62a0d0",
+      "acessos": 10000,
+      "status": "PASS"
+    },
+    {
+      "cenario": "quente_080",
+      "trace_sha256": "6b7f430d6239142759f35fec2ec0f301a460f24814c3f013567502ba0b634e37",
+      "acessos": 10000,
+      "status": "PASS"
+    },
+    {
+      "cenario": "quente_100",
+      "trace_sha256": "66b6919f594aceb219b290db8e7eaf5ca601f88514885b8e7d8ef2725641d35d",
+      "acessos": 10000,
+      "status": "PASS"
+    },
+    {
+      "cenario": "misto_te",
+      "trace_sha256": "a8a6b8743e4af3c9a95eede1b36461d3534ad388f10b0449b2a2cb1ffd66b404",
+      "acessos": 10000,
+      "status": "PASS"
+    },
+    {
+      "cenario": "misto_tq",
+      "trace_sha256": "1ba183d5b5239f73adb62dc470db6339d9665e5caa48f543aa454905ca17c0ca",
+      "acessos": 10000,
+      "status": "PASS"
+    },
+    {
+      "cenario": "misto_eq",
+      "trace_sha256": "fb77ab4c298a9a9e9c2b6417abb2555b16fb6ad765ff4f523ed03d34d2b5165f",
+      "acessos": 10000,
+      "status": "PASS"
+    },
+    {
+      "cenario": "misto_equilibrado",
+      "trace_sha256": "77a17a8c0197e19aded873cb502d0458a0101c9771652855f5b6a24d2f269a7d",
+      "acessos": 10000,
+      "status": "PASS"
+    },
+    {
+      "cenario": "misto_padrao",
+      "trace_sha256": "281b66947181a5b70173fe5c7eb3c40e3537a709bca0ce00da1dea18d1d3662e",
+      "acessos": 10000,
+      "status": "PASS"
+    }
+  ]
+}

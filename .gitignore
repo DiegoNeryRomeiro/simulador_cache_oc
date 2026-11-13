@@ -1,0 +1,7 @@
+.venv/
+.mplconfig/
+__pycache__/
+*.py[cod]
+resultados/piloto/traces/
+resultados/piloto/graficos/
+resultados/piloto/mapas_calor/
