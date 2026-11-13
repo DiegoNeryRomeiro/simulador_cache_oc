@@ -56,6 +56,11 @@ class LRU(EvictionPolicy):
         return min(lines, key=lambda line: line.last_access_time)
 
 
+class MRU(EvictionPolicy):
+    def find_victim(self, lines: List[CacheLine]) -> CacheLine:
+        return max(lines, key=lambda line: line.last_access_time)
+
+
 class LFU(EvictionPolicy):
     def find_victim(self, lines: List[CacheLine]) -> CacheLine:
         return min(lines, key=lambda line: (line.access_frequency, line.last_access_time))
@@ -108,7 +113,15 @@ class CacheMemory:
         self.offset_bits = int(math.log2(self.block_size))
         self.index_bits = int(math.log2(self.num_sets))
         
-        policy_map = {"FIFO": FIFO(), "LRU": LRU(), "LFU": LFU(), "Random": RandomPolicy()}
+
+        policy_map = {
+            "FIFO": FIFO(),
+            "LRU": LRU(),
+            "LFU": LFU(),
+            "Random": RandomPolicy(),
+            "MRU": MRU()
+        }
+
         self.policy = policy_map.get(policy_name, FIFO())
 
         self.sets: List[CacheSet] = [CacheSet(self.associativity, self.policy) for _ in range(self.num_sets)]
@@ -277,7 +290,13 @@ class CacheSimulatorApp(ctk.CTk):
         self.entry_assoc = self._add_stepper_field(self.sidebar, "Associatividade:", "16", is_pow2=True)
 
         ctk.CTkLabel(self.sidebar, text="Algoritmo de Substituição:", font=ctk.CTkFont(size=12)).pack(anchor="w", pady=(5, 2))
-        self.combo_algo = ctk.CTkComboBox(self.sidebar, values=["FIFO", "LRU", "LFU", "Random"], command=self._selecionar_algoritmo)
+
+        self.combo_algo = ctk.CTkComboBox(
+            self.sidebar,
+            values=["FIFO", "LRU", "LFU", "Random", "MRU"],
+            command=self._selecionar_algoritmo
+        )
+
         self.combo_algo.set("FIFO")
         self.combo_algo.pack(fill="x", pady=(0, 10))
 
